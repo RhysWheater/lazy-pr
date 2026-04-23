@@ -1,5 +1,5 @@
 [project]
-name = "lazy-pr"
+name = "lazy-pull-request"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
