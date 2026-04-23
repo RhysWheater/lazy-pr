@@ -9,3 +9,19 @@ dependencies = [
     "pygithub>=2.9.1",
     "typer>=0.24.1",
 ]
+
+[dependency-groups]
+dev = [
+    "mypy>=1.0",
+    "ruff>=0.4",
+]
+
+[tool.ruff]
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true

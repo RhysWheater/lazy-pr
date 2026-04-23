@@ -1,13 +1,13 @@
 import os
+
 import typer
 from github import Github
 from github.Auth import Token
 
-
 app = typer.Typer()
 
 
-def get_github():
+def get_github() -> Github:
     token = os.environ.get("GITHUB_TOKEN")
     if not token:
         typer.echo("Missing $GITHUB_TOKEN", err=True)
@@ -16,14 +16,14 @@ def get_github():
 
 
 @app.command()
-def list_prs(repo: str):
+def list_prs(repo: str) -> None:
     g = get_github()
     for pr in g.get_repo(repo).get_pulls(state="open"):
         typer.echo(f"#{pr.number} {pr.title} - {pr.user.login}")
 
 
 @app.command()
-def say_hello():
+def say_hello() -> None:
     typer.echo('hello')
 
 
