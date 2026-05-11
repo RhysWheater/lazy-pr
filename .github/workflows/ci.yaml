@@ -9,6 +9,8 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
+    env:
+      UV_LINK_MODE: copy
     steps:
       - uses: actions/checkout@v4
       - uses: astral-sh/setup-uv@v5
