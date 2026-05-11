@@ -14,7 +14,6 @@ jobs:
     environment: pypi
     permissions:
       id-token: write
-    if: ${{ !github.event.act }}  # skip during local actions testing
 
     steps:
       - uses: actions/checkout@v4
