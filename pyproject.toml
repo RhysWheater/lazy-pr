@@ -27,3 +27,14 @@ select = ["E", "F", "I", "UP"]
 [tool.mypy]
 python_version = "3.12"
 strict = true
+
+[tool.bumpversion]
+current_version = "0.1.5"
+commit = true
+tag = true
+push = true
+
+[[tool.bumpversion.files]]
+filename = "pyproject.toml"
+search = 'version = "{current_version}"'
+replace = 'version = "{new_version}"'
