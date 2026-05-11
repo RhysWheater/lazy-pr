@@ -1,0 +1,4 @@
+#!/usr/bin/bash
+
+act -W .github/workflows/ci.yaml
+
