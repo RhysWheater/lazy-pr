@@ -18,12 +18,12 @@ def get_github() -> Github:
 
 
 @app.command()
-def list_prs(remote: str = None) -> None:
-    if not remote:
-        repo = Repo(Path.cwd())
-        remote = repo.remotes[0]
+def list_prs(repo_path: str = Path.cwd()) -> None:
+    repo = Repo(repo_path)
+    remote_url = repo.remotes[0].url
+    remote_path = remote_url.split(':')[1][:-4]  # git@github.com:/foo/bar.git -> foo/bar
     g = get_github()
-    for pr in g.get_remote(remote).get_pulls(state="open"):
+    for pr in g.get_repo(remote_path).get_pulls(state="open"):
         typer.echo(f"#{pr.number} {pr.title} - {pr.user.login}")
 
 
