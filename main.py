@@ -1,8 +1,10 @@
 import os
 
 import typer
+from git import Repo
 from github import Github
 from github.Auth import Token
+from pathlib import Path
 
 app = typer.Typer()
 
@@ -16,9 +18,12 @@ def get_github() -> Github:
 
 
 @app.command()
-def list_prs(repo: str) -> None:
+def list_prs(remote: str = None) -> None:
+    if not remote:
+        repo = Repo(Path.cwd())
+        remote = repo.remotes[0]
     g = get_github()
-    for pr in g.get_repo(repo).get_pulls(state="open"):
+    for pr in g.get_remote(remote).get_pulls(state="open"):
         typer.echo(f"#{pr.number} {pr.title} - {pr.user.login}")
 
 
